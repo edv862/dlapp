@@ -10,5 +10,11 @@ class FileUploadForm(forms.Form):
         )
     )
 
+    search_for = forms.ChoiceField(
+        choices=[(1, "Line"), (2, "Paragraph")]
+    )
+
+    number = forms.IntegerField(min_value=0)
+
     class Meta:
         verbose_name = 'File upload form'
