@@ -7,7 +7,6 @@ class output(models.Model):
     # Usuario que creo el output
     owner = models.ForeignKey(
         User,
-        null=False,
         on_delete=models.CASCADE
     )
     date = models.DateTimeField(
