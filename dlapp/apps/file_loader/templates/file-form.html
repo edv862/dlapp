@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "plugins/bootstrap-fileinput/css/fileinput.min.css" %}>
+    <link rel="stylesheet" href={% static "plugins/bootstrap-fileinput/css/fileinput-rtl.min.css" %}>
+{% endblock css %}
 
 {% block content %}
     <form method="POST" enctype="multipart/form-data">
@@ -8,3 +14,15 @@
         </button>
     </form>
 {% endblock content %}
+
+{% block js %}
+    <script src={% static "plugins/bootstrap-fileinput/js/fileinput.min.js" %}></script>
+    <script>
+        $("#id_file").fileinput({
+            uploadUrl: "{% url 'file-loader:upload' %}",
+            uploadAsync: false,
+            allowedFileExtensions: ["docx", "txt", "pdf"],
+            showUpload: false,
+        });
+    </script>
+{% endblock js %}
