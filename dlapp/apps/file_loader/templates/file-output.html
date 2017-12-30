@@ -2,5 +2,11 @@
 
 {% block content %}
     huehuehue
-    {{ output }}
+    <hr>
+    {% for o in output %}
+    	<p>{{o.owner}}</p>
+    	<p>{{o.date}}</p>
+    	<p>{{o.output_text}}</p>
+    	<hr>
+    {% endfor %}
 {% endblock content %}

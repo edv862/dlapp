@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.urls import reverse_lazy
 from django.core.files.uploadedfile import UploadedFile
 from django.contrib.auth.models import User
@@ -52,5 +52,21 @@ class FileUploadView(FormView):
 
 
 class FileOutputView(TemplateView):
-    template_name = 'file-output.html'
-    context_object_name = 'output'
+
+    def get(self, request, *args, **kwargs):
+        """ Función para obtener las variables necesarias para la vista """
+        context = self.get_context_data(**kwargs)
+        return render_to_response('file-output.html', context)
+
+    def get_context_data(self, **kwargs):
+        key_string = self.kwargs['output_id']
+        nkey_string = key_string.replace("[", "").replace("]", "")
+        keys = [int(s) for s in nkey_string.split(',')]
+
+        file_list = []
+        for key in keys:
+            file_list.append(output.objects.all().filter(pk=key)[0])
+
+        kwargs['output'] = file_list
+
+        return super(FileOutputView, self).get_context_data(**kwargs)
