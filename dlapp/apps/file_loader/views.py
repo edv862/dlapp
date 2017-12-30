@@ -10,9 +10,13 @@ from .reader import extract
 
 
 class FileUploadView(FormView):
+
     form_class = FileUploadForm
     template_name = 'file-form.html'
-    success_url = reverse_lazy('file-loader:output')
+    # success_url = reverse_lazy(
+    #    'file-loader:output',
+    #    kwargs=self.kwargs
+    # )
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -20,6 +24,7 @@ class FileUploadView(FormView):
             type_output = form.cleaned_data['search_for']
             number_to_look = int(form.cleaned_data['number'])
             usuario = User.objects.all()[0]
+            output_id = []
 
             # Proccesing the files.
             for file_input in request.FILES.getlist('file'):
@@ -28,13 +33,20 @@ class FileUploadView(FormView):
                     type_output,
                     number_to_look
                 )
-                output(
+                file = output(
                     owner=usuario,
                     date=datetime.now(),
                     output_text=text_parsed
-                ).save()
+                )
+                file.save()
+                output_id.append(file.pk)
 
-            return self.form_valid(form)
+            self.success_url = reverse_lazy(
+                'file-loader:output',
+                kwargs={'output_id': output_id}
+            )
+            return super(FileUploadView, self).form_valid(form)
+            # return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
