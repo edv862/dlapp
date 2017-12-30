@@ -10,13 +10,8 @@ from .reader import extract
 
 
 class FileUploadView(FormView):
-
     form_class = FileUploadForm
     template_name = 'file-form.html'
-    # success_url = reverse_lazy(
-    #    'file-loader:output',
-    #    kwargs=self.kwargs
-    # )
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -51,9 +46,8 @@ class FileUploadView(FormView):
 
 
 class FileOutputView(TemplateView):
-
     def get(self, request, *args, **kwargs):
-        """ Función para obtener las variables necesarias para la vista """
+        """ Get necesary data to make the function work. """
         context = self.get_context_data(**kwargs)
         return render_to_response('file-output.html', context)
 

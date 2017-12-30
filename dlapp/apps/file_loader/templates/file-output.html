@@ -1,12 +1,55 @@
 {% extends "base.html" %}
 
+{% block content-title %}
+    Results:
+{% endblock content-title %}
+
 {% block content %}
-    huehuehue
-    <hr>
-    {% for o in output %}
-    	<p>{{o.owner}}</p>
-    	<p>{{o.date}}</p>
-    	<p>{{o.output_text}}</p>
-    	<hr>
-    {% endfor %}
+<div class="box box-success">
+    <div class="box-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Creator
+                    </th>
+                    <th>
+                        Created Date
+                    </th>
+                    <th>
+                        Output Text
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in output %}
+                    <tr>
+                        <td>
+                            <p>{{o.owner}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.date}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.output_text}}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        Creator
+                    </th>
+                    <th>
+                        Created Date
+                    </th>
+                    <th>
+                        Output Text
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
 {% endblock content %}
