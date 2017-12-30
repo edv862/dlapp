@@ -46,7 +46,6 @@ class FileUploadView(FormView):
                 kwargs={'output_id': output_id}
             )
             return super(FileUploadView, self).form_valid(form)
-            # return self.form_valid(form)
         else:
             return self.form_invalid(form)
 

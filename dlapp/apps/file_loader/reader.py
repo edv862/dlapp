@@ -65,9 +65,7 @@ def docx_2_string(filename):
 
 # Get text from txt file
 def txt_2_string(filename):
-    filed = open(filename, 'r')
-    text = filed.read()
-    filed.close()
+    text = filename.read()
     return text
 
 
@@ -84,7 +82,8 @@ def is_lline(str):
     # The whitespaces, tabs and other useless characters
     # A line must has at least 30 characters
     if (len(str) >= 30):
-        if ((str != "\n") and (str != " ") and (str != "\0") and (str != "") and (str != "\t")):
+        if ((str != "\n") and (str != " ") and (str != "\0") and (str != "")
+         and (str != "\t")):
             return True
     return False
 
@@ -95,7 +94,8 @@ def is_line(str):
     # The whitespaces, tabs and other useless characters
     # A line must has at least 50 characterss
     if (len(str) >= 50):
-        if ((str != "\n") and (str != " ") and (str != "\0") and (str != "") and (str != "\t")):
+        if ((str != "\n") and (str != " ") and (str != "\0") and (str != "")
+         and (str != "\t")):
             return True
     return False
 
@@ -158,7 +158,8 @@ def extract(filename, opt, number):
     if ext == ".pdf":
         text = pdf_2_string(filename)
     elif ext == ".txt":
-        text = txt_2_string(filename)
+        aux = txt_2_string(filename)
+        text = aux.decode("utf-8")
     elif ext == ".docx":
         text = docx_2_string(filename)
     else:
@@ -199,7 +200,8 @@ if __name__ == '__main__':
     if ext == ".pdf":
         text = pdf_2_string(filename)
     elif ext == ".txt":
-        text = txt_2_string(filename)
+        aux = txt_2_string(filename)
+        text = aux.decode("utf-8")
     elif ext == ".docx":
         text = docx_2_string(filename)
     else:
