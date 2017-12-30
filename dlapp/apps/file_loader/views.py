@@ -17,7 +17,7 @@ class FileUploadView(FormView):
 
             # Proccesing the files.
             for file_input in request.FILES.getlist('file'):
-                print(file_input)
+                print(file_input.name)
                 # parser = PDFParser(file_input)
                 # print(parser)
 
