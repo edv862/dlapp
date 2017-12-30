@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href={% static "css/skins/skin-blue.min.css" %}>
   <link rel="stylesheet" href={% static "css/datatables.min.css" %}>
+  <link rel="stylesheet" href={% static "plugins/select2/dist/css/select2.min.css" %}>
   <link rel="stylesheet" href={% static "css/styles.css" %}>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -258,15 +259,13 @@ desired effect
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
+      <h1 >
         {% block content-title %}
           
         {% endblock content-title %}
       </h1>
     </section>
   
-    <br>
-
     <!-- Main content -->
     <section class="content container-fluid">
 
@@ -379,6 +378,7 @@ desired effect
 
 <script src={% static "js/scripts.js" %}></script>
 <script src={% static "js/moment/moment.min.js" %}></script>
+<script src={% static "plugins/select2/dist/js/select2.min.js" %}></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
