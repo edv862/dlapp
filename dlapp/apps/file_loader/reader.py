@@ -18,12 +18,14 @@ import os
 def pdf_2_string(filename):
 
     # open pdf file
-    scrape = open(filename, 'rb')
+    # scrape = open(filename, 'rb')
+
+    scrape = filename
     pdfFiler = BytesIO(scrape.read())
-    codec = 'utf-8'
     # Create a PDF resource manager object that stores shared resources.
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
+    codec = 'utf-8'
     # Set parameters for analysis.
     laparams = LAParams()
     # Set the converter
@@ -49,10 +51,9 @@ def pdf_2_string(filename):
     ):
         interpreter.process_page(page)
 
-    device.close()
     textstr = retstr.getvalue()
+    device.close()
     retstr.close()
-    scrape.close()
     return textstr
 
 
@@ -71,10 +72,10 @@ def txt_2_string(filename):
 
 
 # Get file's extension
-def get_extension(filename):
-    basename = os.path.basename(filename)  # os independent
-    ext = os.path.splitext(filename)[-1].lower()
-    return ext if ext else None
+def get_extension(file):
+    # basename = os.path.basename(filename)  # os independent
+    ext = os.path.splitext(file)[-1].lower()
+    return ext
 
 
 # Line definition for lines
@@ -144,6 +145,32 @@ def get_paragraph(str, nparag):
                 nlines = 0
                 paragraph = ""
     return result
+
+
+def extract(filename, opt, number):
+    # Get file extension
+    ext = get_extension(filename.name)
+
+    text = ""
+
+    choice = int(opt)
+
+    if ext == ".pdf":
+        text = pdf_2_string(filename)
+    elif ext == ".txt":
+        text = txt_2_string(filename)
+    elif ext == ".docx":
+        text = docx_2_string(filename)
+    else:
+        # Invalid extension.
+        pass
+
+    if (choice == 1):
+        line_choice = get_line(text, number)
+        return line_choice
+    elif (choice == 2):
+        paragraph = get_paragraph(text, number)
+        return paragraph
 
 
 # reader.py arg1
