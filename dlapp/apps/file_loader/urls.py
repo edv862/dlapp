@@ -11,7 +11,7 @@ urlpatterns = [
         name='upload',
     ),
     url(
-        r'output/$',
+        r'output/(?P<output_id>.+)/$',
         FileOutputView.as_view(),
         name='output',
     ),

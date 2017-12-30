@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href={% static "css/skins/skin-blue.min.css" %}>
   <link rel="stylesheet" href={% static "css/datatables.min.css" %}>
+  <link rel="stylesheet" href={% static "css/styles.css" %}>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -246,19 +247,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+        <li class="active"><a href={% url "file-loader:upload" %}><i class="fa fa-file"></i><span>Upload Files</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -294,10 +283,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Qadium Certificates
+      DlApplication
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">Qadium</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">DlApp</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

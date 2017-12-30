@@ -1,6 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-    huehuehue
-    {{ output }}
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Creator
+                </th>
+                <th>
+                    Created Date
+                </th>
+                <th>
+                    Output Text
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in output %}
+                <tr>
+                    <td>
+                        <p>{{o.owner}}</p>
+                    </td>
+                    <td>
+                        <p>{{o.date}}</p>
+                    </td>
+                    <td>
+                        <p>{{o.output_text}}</p>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Creator
+                </th>
+                <th>
+                    Created Date
+                </th>
+                <th>
+                    Output Text
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+    <hr>
 {% endblock content %}
