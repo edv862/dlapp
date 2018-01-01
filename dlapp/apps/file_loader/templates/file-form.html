@@ -11,8 +11,9 @@
 {% endblock content-title %}
 
 {% block content %}
-    <div class="box box-info">
+    <div class="box box-primary">
         <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="box-body">
                 {% bootstrap_field form.file %}
                 <div class="row">
@@ -36,8 +37,6 @@
     <script src={% static "plugins/bootstrap-fileinput/js/fileinput.min.js" %}></script>
     <script>
         $("#id_file").fileinput({
-            uploadUrl: "{% url 'file-loader:upload' %}",
-            uploadAsync: false,
             allowedFileExtensions: ["docx", "txt", "pdf"],
             showUpload: false,
         });

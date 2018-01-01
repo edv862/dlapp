@@ -10,7 +10,7 @@ sys.path.insert(0, root('apps'))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'CHANGE THIS!!!'
+SECRET_KEY = 'ev_%z7docsxs@+_amp48qx@j!z3+vtf$=#ejx#lq)g2@xhv2h!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,17 +32,17 @@ INSTALLED_APPS = [
 
 PROJECT_APPS = [
     'dlapp.apps.file_loader.apps.FileLoaderConfig',
+    'dlapp.apps.user_management.apps.UserManagementConfig',
 ]
 
 INSTALLED_APPS += PROJECT_APPS
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -79,12 +79,10 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 
 
 # Additional locations of static files
-
 STATICFILES_DIRS = (
     root('static'),
 )
@@ -112,7 +110,6 @@ TEMPLATES = [
 ]
 
 # Password validation
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -128,6 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = 'file-loader/upload/'
+LOGOUT_REDIRECT_URL = '/'
 
 # .local.py overrides all the common settings.
 try:
