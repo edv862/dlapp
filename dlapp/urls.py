@@ -20,8 +20,13 @@ urlpatterns = [
         )
     ),
     url(
+        r'^logout/$',
+        LogoutView.as_view(),
+        name='logout',
+    ),
+    url(
         r'^$',
-        LoginView.as_view(template_name='user-login.html'),
-        name='login',
+        LoginView.as_view(template_name='home.html'),
+        name='home',
     ),
 ]
