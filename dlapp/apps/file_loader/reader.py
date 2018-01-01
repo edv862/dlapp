@@ -100,6 +100,18 @@ def is_line(str):
     return False
 
 
+# short line definition for paragraphs
+def is_sline(str):
+    # Its necesary ignore some lines extracted from tables
+    # The whitespaces, tabs and other useless characters
+    # A line must has at least 30 characters
+    if (len(str) >= 10):
+        if ((str != "\n") and (str != " ") and (str != "\0") and (str != "")
+         and (str != "\t")):
+            return True
+    return False
+
+
 # Get a line in the string
 # str: document converted
 # nline: line to find
@@ -132,8 +144,12 @@ def get_paragraph(str, nparag):
             nlines += 1
         else:
             # Here define, its a paragraph if has at least 2 lines in a row
-            # Me? I would choose 3 instead
             if (nlines >= 2):
+                # This should be the last line, so it can smaller
+                if (is_sline(line)):
+                    paragraph = paragraph + line
+                    nlines += 1
+
                 if (i == nparag):
                     result = paragraph
                     break
