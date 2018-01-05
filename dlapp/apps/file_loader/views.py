@@ -28,7 +28,7 @@ class FileUploadView(FormView):
                     type_output,
                     number_to_look
                 )
-                file = output(
+                file = Output(
                     owner=usuario,
                     date=datetime.now(),
                     output_text=text_parsed
@@ -58,7 +58,7 @@ class FileOutputView(TemplateView):
 
         file_list = []
         for key in keys:
-            file_list.append(output.objects.all().filter(pk=key)[0])
+            file_list.append(Output.objects.all().filter(pk=key)[0])
 
         kwargs['output'] = file_list
 

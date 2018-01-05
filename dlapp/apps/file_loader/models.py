@@ -3,8 +3,8 @@ from django.db import models
 
 
 # Create your models here.
-class output(models.Model):
-    # Usuario que creo el output
+class Output(models.Model):
+    # Usuario que creo el Output
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE
