@@ -3,13 +3,14 @@ from django.urls import reverse_lazy
 from django.core.files.uploadedfile import UploadedFile
 from django.contrib.auth.models import User
 from django.views.generic import FormView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from .forms import FileUploadForm
 from .models import *
 from .reader import extract
 
 
-class FileUploadView(FormView):
+class FileUploadView(LoginRequiredMixin, FormView):
     form_class = FileUploadForm
     template_name = 'file-form.html'
 
@@ -18,7 +19,7 @@ class FileUploadView(FormView):
         if form.is_valid():
             type_output = form.cleaned_data['search_for']
             number_to_look = int(form.cleaned_data['number'])
-            usuario = User.objects.all()[0]
+            usuario = self.request.user
             output_id = []
 
             # Proccesing the files.
@@ -45,11 +46,8 @@ class FileUploadView(FormView):
             return self.form_invalid(form)
 
 
-class FileOutputView(TemplateView):
-    def get(self, request, *args, **kwargs):
-        """ Get necesary data to make the function work. """
-        context = self.get_context_data(**kwargs)
-        return render_to_response('file-output.html', context)
+class FileOutputView(LoginRequiredMixin, TemplateView):
+    template_name = "file-output.html"
 
     def get_context_data(self, **kwargs):
         key_string = self.kwargs['output_id']

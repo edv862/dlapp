@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 from .forms import UserRegisterForm
 
+
 class UserRegisterView(CreateView):
     model = User
     template_name = 'user-register.html'
