@@ -5,8 +5,6 @@ import os
 DEBUG = False
 TEMPLATES[0]['debug'] = DEBUG
 
-SECRET_KEY = os.environ["SECRET_KEY"]
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 ADMINS = (
