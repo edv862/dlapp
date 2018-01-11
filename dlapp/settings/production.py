@@ -3,7 +3,7 @@ import os
 
 
 DEBUG = False
-TEMPLATES['OPTIONS']['debug'] = DEBUG
+TEMPLATES[0]['debug'] = DEBUG
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
