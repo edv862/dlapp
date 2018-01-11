@@ -16,7 +16,9 @@ SECRET_KEY = 'ev_%z7docsxs@+_amp48qx@j!z3+vtf$=#ejx#lq)g2@xhv2h!'
 DEBUG = True
 IN_TESTING = sys.argv[1:2] == ['test']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'Jhonns862.pythonanywhere.com',
+]
 
 # Application definition
 
@@ -47,20 +49,24 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+X_FRAME_OPTIONS = 'DENY'
+
 ROOT_URLCONF = 'dlapp.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dlapp.wsgi.application'
 
 # Database
-
+DB_USER = 'postgres'
+DB_PASSWORD = 'postgres'
+DB_HOST = ''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dlapp',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',  # Set to empty string for default.
     }
 }
