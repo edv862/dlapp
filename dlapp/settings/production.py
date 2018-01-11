@@ -26,4 +26,4 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = root('static')
