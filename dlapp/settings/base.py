@@ -79,13 +79,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
-
+STATIC_URL = '/assets/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    root('static'),
+    root('assets'),
 )
 
 TEMPLATES = [

@@ -25,3 +25,5 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+STATIC_ROOT = '/static/'
