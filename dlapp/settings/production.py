@@ -26,7 +26,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/tmp/dlapp_test.db',
+        'NAME': 'dlapp.db',
     }
 }
 
