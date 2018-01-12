@@ -5,7 +5,7 @@ import os
 DEBUG = False
 TEMPLATES[0]['debug'] = DEBUG
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "ev_%z7docsxs@+_amp48qx@j!z3+vtf$=#ejx#lq)g2@xhv2h!")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
