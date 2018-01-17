@@ -63,7 +63,7 @@ class FileOutputView(LoginRequiredMixin, TemplateView):
         return super(FileOutputView, self).get_context_data(**kwargs)
 
 
-class OutputListView(ListView):
+class OutputListView(LoginRequiredMixin, ListView):
     model = Output
     context_object_name = 'output'
     template_name = 'output-list.html'
