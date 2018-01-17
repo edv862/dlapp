@@ -17,7 +17,7 @@ DEBUG = True
 IN_TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = [
-    'Jhonns862.pythonanywhere.com',
+    'jhonns862.pythonanywhere.com',
 ]
 
 # Application definition
@@ -60,16 +60,6 @@ WSGI_APPLICATION = 'dlapp.wsgi.application'
 DB_USER = 'postgres'
 DB_PASSWORD = 'postgres'
 DB_HOST = ''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dlapp',
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
-    }
-}
 
 # Internationalization
 

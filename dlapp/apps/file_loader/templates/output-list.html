@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content-title %}
+    Hello {{ user.full_name }}:
+{% endblock content-title %}
+
+{% block content %}
+<div class="box box-success">
+    <div class="box-body table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Created Date
+                    </th>
+                    <th>
+                        Output Text
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in output %}
+                    <tr>
+                        <td>
+                            <p>{{o.date}}</p>
+                        </td>
+                        <td width="70%">
+                            <p>{{o.output_text}}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        Created Date
+                    </th>
+                    <th>
+                        Output Text
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock content %}

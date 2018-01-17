@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.urls import reverse_lazy
 from django.core.files.uploadedfile import UploadedFile
 from django.contrib.auth.models import User
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from .forms import FileUploadForm
@@ -61,3 +61,13 @@ class FileOutputView(LoginRequiredMixin, TemplateView):
         kwargs['output'] = file_list
 
         return super(FileOutputView, self).get_context_data(**kwargs)
+
+
+class OutputListView(ListView):
+    model = Output
+    context_object_name = 'output'
+    template_name = 'output-list.html'
+
+    def get_querset(self):
+        print(self.request.user)
+        return Output.objects.all()
