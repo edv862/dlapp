@@ -10,14 +10,14 @@ sys.path.insert(0, root('apps'))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ev_%z7docsxs@+_amp48qx@j!z3+vtf$=#ejx#lq)g2@xhv2h!'
+SECRET_KEY = '{TK@8e]2sW!=O!3)6fe&.{UkJEI}eS)bA@9rfl:(e7\/HT%CX?'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 IN_TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = [
-    '127.0.0.1'
+    'sainid.pythonanywhere.com',
 ]
 
 # Application definition
@@ -57,9 +57,11 @@ ROOT_URLCONF = 'dlapp.urls'
 WSGI_APPLICATION = 'dlapp.wsgi.application'
 
 # Database
-DB_USER = 'postgres'
-DB_PASSWORD = 'postgres'
-DB_HOST = ''
+DB_NAME = 'dlapp'
+DB_USER = 'super'
+DB_PASSWORD = 'sainipythonanywherepostgrespassword'
+DB_HOST = 'sainid-646.postgres.pythonanywhere-services.com'
+DB_PORT = '10646'
 
 # Internationalization
 

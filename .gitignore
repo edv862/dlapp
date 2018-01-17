@@ -101,4 +101,7 @@ ENV/
 .mypy_cache/
 
 #Settings.
-dlapp/settings/
+dlapp/settings/*
+
+#Static.
+dlapp/static/*
