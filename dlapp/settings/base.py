@@ -17,7 +17,7 @@ DEBUG = True
 IN_TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = [
-    'jhonns862.pythonanywhere.com',
+    '127.0.0.1'
 ]
 
 # Application definition

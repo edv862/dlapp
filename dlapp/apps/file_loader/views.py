@@ -68,6 +68,5 @@ class OutputListView(ListView):
     context_object_name = 'output'
     template_name = 'output-list.html'
 
-    def get_querset(self):
-        print(self.request.user)
-        return Output.objects.all()
+    def get_queryset(self):
+        return Output.objects.filter(owner=self.request.user)
