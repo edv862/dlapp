@@ -14,6 +14,12 @@
                         Created Date
                     </th>
                     <th>
+                        Search type
+                    </th>
+                    <th>
+                        Search Value
+                    </th>
+                    <th>
                         Output Text
                     </th>
                 </tr>
@@ -23,6 +29,12 @@
                     <tr>
                         <td>
                             <p>{{o.date}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.search_type}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.search_value}}</p>
                         </td>
                         <td width="70%">
                             <p>{{o.output_text}}</p>
@@ -36,6 +48,12 @@
                         Created Date
                     </th>
                     <th>
+                        Search type
+                    </th>
+                    <th>
+                        Search Value
+                    </th>
+                    <th>
                         Output Text
                     </th>
                 </tr>
@@ -44,3 +62,9 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block js %}
+    <script>
+        $('.table').DataTable();
+    </script>
+{% endblock js %}

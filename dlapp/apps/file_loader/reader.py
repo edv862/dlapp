@@ -117,9 +117,13 @@ def is_sline(str):
 # nline: line to find
 def get_line(str, nline):
     i = 1
+    j = 1
     result = "Lines exceeded"
 
     for line in str.splitlines():
+        if j == 17:
+            print(line)
+        j += 1
         if (is_lline(line)):
             if (i == nline):
                 result = line
@@ -134,11 +138,16 @@ def get_line(str, nline):
 # nparag: paragraph to find
 def get_paragraph(str, nparag):
     i = 1
+    j = 1
     nlines = 0
     result = "Paragraphs exceeded"
     paragraph = ""
 
     for line in str.splitlines():
+        if j == 17:
+            print(line)
+        j += 1
+        
         if (is_line(line)):
             paragraph = paragraph + line
             nlines += 1
@@ -164,6 +173,7 @@ def get_paragraph(str, nparag):
 
 
 def extract(filename, opt, number):
+    number = int(number)
     # Get file extension
     ext = get_extension(filename.name)
 

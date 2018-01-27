@@ -12,15 +12,27 @@
 
 {% block content %}
     <div class="box box-primary">
-        <form method="POST" enctype="multipart/form-data">
+        {% if form.errors %}
+            <div class="box-header">
+                {% bootstrap_form_errors form %}
+            </div>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             <div class="box-body">
                 {% bootstrap_field form.file %}
                 <div class="row">
                     <div class="col-lg-6">
-                        {% bootstrap_field form.search_for layout='horizontal' %}
+                        <h3>
+                            Look for text:
+                        </h3>
+                        {% bootstrap_field form.text_search layout='horizontal' %}
                     </div>
                     <div class="col-lg-6">
+                        <h3>
+                            Look for line/Paragraph:
+                        </h3>
+                        {% bootstrap_field form.search_for layout='horizontal' %}
                         {% bootstrap_field form.number layout='horizontal' %}
                     </div>
                 </div>

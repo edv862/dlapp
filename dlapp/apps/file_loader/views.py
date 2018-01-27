@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 from django.views.generic import FormView, TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
+from .reader import extract
+from .word_search import word_search
 from .forms import FileUploadForm
 from .models import *
-from .reader import extract
 
 
 class FileUploadView(LoginRequiredMixin, FormView):
@@ -18,21 +19,40 @@ class FileUploadView(LoginRequiredMixin, FormView):
         form = self.get_form()
         if form.is_valid():
             type_output = form.cleaned_data['search_for']
-            number_to_look = int(form.cleaned_data['number'])
+            number_to_look = form.cleaned_data['number']
+            text = form.cleaned_data['text_search']
             usuario = self.request.user
             output_id = []
 
             # Proccesing the files.
             for file_input in request.FILES.getlist('file'):
-                text_parsed = extract(
-                    file_input,
-                    type_output,
-                    number_to_look
-                )
+                # Look for text, only in doc or txt.
+                if text != '':
+                    output = word_search(
+                        text,
+                        file_input
+                    )
+                    # Search type is text search.
+                    search_type = 0
+                    search_value = text
+
+                # Or look for the line or paragraph.
+                else:
+                    # Type output: 1 for line search, 2 for paragraph.
+                    search_type = type_output
+                    search_value = number_to_look
+                    output = extract(
+                        file_input,
+                        type_output,
+                        number_to_look
+                    )
+
                 file = Output(
                     owner=usuario,
                     date=datetime.now(),
-                    output_text=text_parsed
+                    output_text=output,
+                    search_type=search_type,
+                    search_value=search_value,
                 )
                 file.save()
                 output_id.append(file.pk)
