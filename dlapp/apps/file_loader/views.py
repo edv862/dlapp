@@ -50,6 +50,7 @@ class FileUploadView(LoginRequiredMixin, FormView):
                 file = Output(
                     owner=usuario,
                     date=datetime.now(),
+                    file_name=file_input.name,
                     output_text=output,
                     search_type=search_type,
                     search_value=search_value,

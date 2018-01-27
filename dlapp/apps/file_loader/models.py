@@ -20,6 +20,9 @@ class Output(models.Model):
         blank=True
     )
 
+    file_name = models.CharField(
+        max_length=255,
+    )
     output_text = models.TextField(
         u'Texto extraido',
         blank=True,
