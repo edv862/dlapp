@@ -6,3 +6,17 @@
 .red{
     color: red;
 }
+
+form {
+    color: #555;
+}
+
+form .box-body .row .col-lg-6:last-child {
+    border-left: 1px solid #aaa;
+}
+
+form .box-body h3 {
+    margin-top: 10px;
+    font-size: 22px;
+    color: #333;
+}

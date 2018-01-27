@@ -11,10 +11,19 @@
             <thead>
                 <tr>
                     <th>
-                        Created Date
+                        Created date
                     </th>
                     <th>
-                        Output Text
+                        File name
+                    </th>
+                    <th>
+                        Search type
+                    </th>
+                    <th>
+                        Search value
+                    </th>
+                    <th>
+                        Output text
                     </th>
                 </tr>
             </thead>
@@ -23,6 +32,15 @@
                     <tr>
                         <td>
                             <p>{{o.date}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.file_name}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.search_type}}</p>
+                        </td>
+                        <td>
+                            <p>{{o.search_value}}</p>
                         </td>
                         <td width="70%">
                             <p>{{o.output_text}}</p>
@@ -33,10 +51,19 @@
             <tfoot>
                 <tr>
                     <th>
-                        Created Date
+                        Created date
                     </th>
                     <th>
-                        Output Text
+                        File name
+                    </th>
+                    <th>
+                        Search type
+                    </th>
+                    <th>
+                        Search value
+                    </th>
+                    <th>
+                        Output text
                     </th>
                 </tr>
             </tfoot>
@@ -44,3 +71,9 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block js %}
+    <script>
+        $('.table').DataTable();
+    </script>
+{% endblock js %}

@@ -7,7 +7,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ALLOWED_HOSTS
 
 ADMINS = (
     ('Edgar Valderrama', 'evalderrama862@gmail.com'),

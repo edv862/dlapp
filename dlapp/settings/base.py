@@ -17,7 +17,8 @@ DEBUG = True
 IN_TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = [
-    'sainid.pythonanywhere.com',
+    'www.dlapplications.com',
+    'webapp-379206.pythonanywhere.com',
 ]
 
 # Application definition
