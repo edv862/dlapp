@@ -4,10 +4,14 @@ from django.db import models
 
 # Create your models here.
 class Output(models.Model):
+    TEXT = 'TEXT'
+    LINE = 'LINE'
+    PARAGRAPH = 'PARAGRAPH'
+
     SEARCH_TYPES = (
-        (0, 'Text Search'),
-        (1, 'Line Search'),
-        (2, 'Paragraph Search'),
+        (TEXT, 'Text Search'),
+        (LINE, 'Line Search'),
+        (PARAGRAPH, 'Paragraph Search'),
     )
 
     # Usuario que creo el Output
@@ -28,8 +32,9 @@ class Output(models.Model):
         blank=True,
         null=True
     )
-    search_type = models.IntegerField(
+    search_type = models.CharField(
+        max_length=50,
         choices=SEARCH_TYPES,
-        default=0,
+        default=TEXT,
     )
     search_value = models.TextField()
