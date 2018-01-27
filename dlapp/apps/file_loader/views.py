@@ -33,13 +33,17 @@ class FileUploadView(LoginRequiredMixin, FormView):
                         file_input
                     )
                     # Search type is text search.
-                    search_type = 0
+                    search_type = Output.TEXT
                     search_value = text
 
                 # Or look for the line or paragraph.
                 else:
                     # Type output: 1 for line search, 2 for paragraph.
-                    search_type = type_output
+                    if type_output == 1:
+                        search_type = Output.LINE
+                    else:
+                        search_type = Output.PARAGRAPH
+
                     search_value = number_to_look
                     output = extract(
                         file_input,
