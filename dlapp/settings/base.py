@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 PROJECT_APPS = [
     'dlapp.apps.file_loader.apps.FileLoaderConfig',
     'dlapp.apps.user_management.apps.UserManagementConfig',
+    'dlapp.apps.hierarchy.apps.HierarchyConfig',
 ]
 
 INSTALLED_APPS += PROJECT_APPS
