@@ -17,7 +17,7 @@ class HierarchyName(models.Model):
 class SearchValues(models.Model):
 
     usage = models.IntegerField()
-    value = models.IntegerField()
+    part = models.IntegerField()
 
 
 class PartUsageHierarchyName(models.Model):

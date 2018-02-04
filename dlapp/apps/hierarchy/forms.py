@@ -1,4 +1,5 @@
 from django import forms
+from .models import SearchValues
 
 
 class FileUploadHierarchyForm(forms.Form):
@@ -12,3 +13,18 @@ class FileUploadHierarchyForm(forms.Form):
 
     class Meta:
         verbose_name = 'File upload form'
+
+
+class ConsultUsagePartIdHierarchyForm(forms.ModelForm):
+
+    class Meta:
+        model = SearchValues
+        fields = (
+            'usage',
+            'part',
+        )
+
+        widgets = {
+            'usage': forms.NumberInput(),
+            'part': forms.NumberInput(),
+        }

@@ -1,42 +1,41 @@
 import pandas
 
 
-def get_heirarchy(csv_file):
+def get_hierarchy(csv_file):
 
     df = pandas.read_csv(csv_file)
     # print the column names)
 
-    json_heirarchy = {}
-    heirarchy_value = ""
-    heirarchy_name = ""
-    json_heirarchy_usage_part = {}
+    json_hierarchy = {}
+    hierarchy_value = ""
+    hierarchy_name = ""
+    json_hierarchy_usage_part = {}
     usage_name = ""
     part_name = ""
     for column in df:
-        heirarchy_value = ""
-        heirarchy_name = ""
+        hierarchy_value = ""
+        hierarchy_name = ""
         for index, row in pandas.Series.iteritems(df[column]):
-            # print (str(row))
 
-            if len(heirarchy_value) == 0 and len(heirarchy_name) == 0:
+            if len(hierarchy_value) == 0 and len(hierarchy_name) == 0:
 
                 if "usageid" in column.lower():
 
                     if (len(str(row)) > 0 and str(row) != "nan"):
                         if ("Total" not in str(row)):
                             usage_name = str(row)
-                            if index not in json_heirarchy_usage_part:
-                                json_heirarchy_usage_part[index] = []
+                            if index not in json_hierarchy_usage_part:
+                                json_hierarchy_usage_part[index] = []
                         else:
-                            if index not in json_heirarchy_usage_part:
-                                json_heirarchy_usage_part[index] = []
-                            json_heirarchy_usage_part[index].append(usage_name)
+                            if index not in json_hierarchy_usage_part:
+                                json_hierarchy_usage_part[index] = []
+                            json_hierarchy_usage_part[index].append(usage_name)
                             usage_name = ""
 
                     if (len(usage_name) > 0):
-                        if index not in json_heirarchy_usage_part:
-                            json_heirarchy_usage_part[index] = []
-                        json_heirarchy_usage_part[index].append(usage_name)
+                        if index not in json_hierarchy_usage_part:
+                            json_hierarchy_usage_part[index] = []
+                        json_hierarchy_usage_part[index].append(usage_name)
                         usage_name = ""
 
                     continue
@@ -46,37 +45,37 @@ def get_heirarchy(csv_file):
                     if (len(str(row)) > 0 and str(row) != "nan"):
                         if ("Total" not in str(row)):
                             part_name = str(row)
-                            if index not in json_heirarchy_usage_part:
-                                json_heirarchy_usage_part[index] = []
+                            if index not in json_hierarchy_usage_part:
+                                json_hierarchy_usage_part[index] = []
                         else:
-                            if index not in json_heirarchy_usage_part:
-                                json_heirarchy_usage_part[index] = []
-                            json_heirarchy_usage_part[index].append(part_name)
+                            if index not in json_hierarchy_usage_part:
+                                json_hierarchy_usage_part[index] = []
+                            json_hierarchy_usage_part[index].append(part_name)
                             part_name = ""
 
                     if (len(part_name) > 0):
-                        if index not in json_heirarchy_usage_part:
-                            json_heirarchy_usage_part[index] = []
-                        json_heirarchy_usage_part[index].append(part_name)
+                        if index not in json_hierarchy_usage_part:
+                            json_hierarchy_usage_part[index] = []
+                        json_hierarchy_usage_part[index].append(part_name)
 
                     continue
 
-            heirarchy_value = column
-            if column not in json_heirarchy:
-                json_heirarchy[heirarchy_value] = {}
-            if len(str(row)) > 0 and len(heirarchy_value) > 0:
+            hierarchy_value = column
+            if column not in json_hierarchy:
+                json_hierarchy[hierarchy_value] = {}
+            if len(str(row)) > 0 and len(hierarchy_value) > 0:
                 if "Total" not in str(row) and str(row) != "nan":
-                    heirarchy_name = str(row)
-                    if heirarchy_name not in json_heirarchy[heirarchy_value]:
-                        json_heirarchy[heirarchy_value][heirarchy_name] = []
-                        json_heirarchy[heirarchy_value][heirarchy_name].append(index)
+                    hierarchy_name = str(row)
+                    if hierarchy_name not in json_hierarchy[hierarchy_value]:
+                        json_hierarchy[hierarchy_value][hierarchy_name] = []
+                        json_hierarchy[hierarchy_value][hierarchy_name].append(index)
 
                 elif ("Total" in str(row)):
 
-                    json_heirarchy[heirarchy_value][heirarchy_name].append(index)
-                    heirarchy_name = ""
+                    json_hierarchy[hierarchy_value][hierarchy_name].append(index)
+                    hierarchy_name = ""
                 else:
-                    if (len(heirarchy_name) > 0):
-                        json_heirarchy[heirarchy_value][heirarchy_name].append(index)
+                    if (len(hierarchy_name) > 0):
+                        json_hierarchy[hierarchy_value][hierarchy_name].append(index)
 
-    return json_heirarchy, json_heirarchy_usage_part
+    return json_hierarchy, json_hierarchy_usage_part
