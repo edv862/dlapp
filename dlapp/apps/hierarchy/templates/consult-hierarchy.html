@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static bootstrap3 %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block content-title %}
+    Consult Hierarchy
+{% endblock content-title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <form class="form">
+                        {% csrf_token %}
+                        {% bootstrap_field form.usage %}
+                        {% bootstrap_field form.part %}
+                        <hr>
+                        <div class="form-group">                    
+                            <input class="btn btn-primary consult-hierarchy" type="button" value="Consult">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="box box-success">
+                <div class="box-body">
+                    <table id="hierarchy-table" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Hierarchy Value</th>
+                                <th scope="col">Hierarchy Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="col">Hierarchy Value</th>
+                                <th scope="col">Hierarchy Name</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="no-result-found">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(function () {
+                $.ajaxSetup({
+                    headers: { "X-CSRFToken": getCookie("csrftoken") }
+                });
+            });
+
+            function getCookie(c_name)
+            {
+                if (document.cookie.length > 0)
+                {
+                    c_start = document.cookie.indexOf(c_name + "=");
+                    if (c_start != -1)
+                    {
+                        c_start = c_start + c_name.length + 1;
+                        c_end = document.cookie.indexOf(";", c_start);
+                        if (c_end == -1) c_end = document.cookie.length;
+                        return unescape(document.cookie.substring(c_start,c_end));
+                    }
+                }
+                return "";
+             }
+
+
+            $('.consult-hierarchy').click(function( event ){
+                var usageID = $("#id_usage").val();
+                var partID = $("#id_part").val();
+                $("#hierarchy-table > tbody").html("");
+                $('.no-result-found').html("");
+                $.ajax({
+                    type:"POST",
+                    url:"/file-loader-hierarchy/consult/",
+                    data: {part: partID, usage: usageID},
+                    success: function(data){
+                        there_is_hierarchy = false;
+                        $.each(data, function(value, name) {
+                            there_is_hierarchy = true;
+                            $('#hierarchy-table > tbody').append(
+                                '<tr>'+
+                                    '<td>'+
+                                        value +
+                                    '</td>'+
+                                    '<td>'+
+                                        name +
+                                    '</td>'+
+                                '</tr>');
+                        });
+                        if (!there_is_hierarchy){
+                           $('.no-result-found').html("No result found"); 
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        $('.no-result-found').html("No result found");
+                    },
+                });
+            })
+         })
+    </script>
+{% endblock js %}

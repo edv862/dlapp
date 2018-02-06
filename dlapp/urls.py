@@ -13,6 +13,13 @@ urlpatterns = [
         )
     ),
     url(
+        r'^file-loader-hierarchy/',
+        include(
+            'hierarchy.urls',
+            namespace='hierarchy'
+        )
+    ),
+    url(
         r'^user/',
         include(
             'user_management.urls',
